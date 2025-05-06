@@ -2,11 +2,7 @@ name: CDK8s Synth
 
 on:
   push:
-    paths:
-      - 'cdk8s/**'
   pull_request:
-    paths:
-      - 'cdk8s/**'
 
 jobs:
   synth:
@@ -19,7 +15,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18' # You can change this to any compatible Node.js version
+        node-version: '18'
 
     - name: Install CDK8s CLI
       run: npm install -g cdk8s-cli
