@@ -71,11 +71,10 @@ func NewService(scope constructs.Construct, id *string, props *AppProps) constru
     k8s.NewKubeService(construct, jsii.String("service"), &k8s.KubeServiceProps{
         Metadata: &k8s.ObjectMeta{Labels: &label},
         Spec: &k8s.ServiceSpec{
-            Type: jsii.String("NodePort"),  // Set the service type to NodePort
+            Type: jsii.String("LoadBalancer"),
             Ports: &[]*k8s.ServicePort{{
                 Port:       port,
                 TargetPort: k8s.IntOrString_FromNumber(containerPort),
-                Protocol:   jsii.String("TCP"),
             }},
             Selector: &label,
         },
