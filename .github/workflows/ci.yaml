@@ -1,0 +1,35 @@
+name: CDK8s Synth
+
+on:
+  push:
+    paths:
+      - 'cdk8s/**'
+  pull_request:
+    paths:
+      - 'cdk8s/**'
+
+jobs:
+  synth:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18' # You can change this to any compatible Node.js version
+
+    - name: Install CDK8s CLI
+      run: npm install -g cdk8s-cli
+
+    - name: Run `cdk8s synth`
+      working-directory: ./cdk8s
+      run: cdk8s synth
+
+    - name: Upload generated manifests
+      uses: actions/upload-artifact@v4
+      with:
+        name: cdk8s-manifests
+        path: cdk8s/dist/
