@@ -1,0 +1,23 @@
+package apiextensionscrossplaneio
+
+
+// Type indicates the type of probe you'd like to use.
+type CompositionRevisionV1Beta1SpecResourcesReadinessChecksType string
+
+const (
+	// MatchString.
+	CompositionRevisionV1Beta1SpecResourcesReadinessChecksType_MATCH_STRING CompositionRevisionV1Beta1SpecResourcesReadinessChecksType = "MATCH_STRING"
+	// MatchInteger.
+	CompositionRevisionV1Beta1SpecResourcesReadinessChecksType_MATCH_INTEGER CompositionRevisionV1Beta1SpecResourcesReadinessChecksType = "MATCH_INTEGER"
+	// NonEmpty.
+	CompositionRevisionV1Beta1SpecResourcesReadinessChecksType_NON_EMPTY CompositionRevisionV1Beta1SpecResourcesReadinessChecksType = "NON_EMPTY"
+	// MatchCondition.
+	CompositionRevisionV1Beta1SpecResourcesReadinessChecksType_MATCH_CONDITION CompositionRevisionV1Beta1SpecResourcesReadinessChecksType = "MATCH_CONDITION"
+	// MatchTrue.
+	CompositionRevisionV1Beta1SpecResourcesReadinessChecksType_MATCH_TRUE CompositionRevisionV1Beta1SpecResourcesReadinessChecksType = "MATCH_TRUE"
+	// MatchFalse.
+	CompositionRevisionV1Beta1SpecResourcesReadinessChecksType_MATCH_FALSE CompositionRevisionV1Beta1SpecResourcesReadinessChecksType = "MATCH_FALSE"
+	// None.
+	CompositionRevisionV1Beta1SpecResourcesReadinessChecksType_NONE CompositionRevisionV1Beta1SpecResourcesReadinessChecksType = "NONE"
+)
+

@@ -1,0 +1,23 @@
+package apiextensionscrossplaneio
+
+
+// ToType is the type of the output of this transform.
+type CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType string
+
+const (
+	// string.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType_STRING CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType = "STRING"
+	// int.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType_INT CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType = "INT"
+	// int64.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType_INT64 CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType = "INT64"
+	// bool.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType_BOOL CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType = "BOOL"
+	// float64.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType_FLOAT64 CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType = "FLOAT64"
+	// object.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType_OBJECT CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType = "OBJECT"
+	// array.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType_ARRAY CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsConvertToType = "ARRAY"
+)
+

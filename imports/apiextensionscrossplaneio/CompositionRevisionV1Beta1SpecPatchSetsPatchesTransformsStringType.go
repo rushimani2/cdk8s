@@ -1,0 +1,21 @@
+package apiextensionscrossplaneio
+
+
+// Type of the string transform to be run.
+type CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType string
+
+const (
+	// Format.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType_FORMAT CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType = "FORMAT"
+	// Convert.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType_CONVERT CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType = "CONVERT"
+	// TrimPrefix.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType_TRIM_PREFIX CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType = "TRIM_PREFIX"
+	// TrimSuffix.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType_TRIM_SUFFIX CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType = "TRIM_SUFFIX"
+	// Regexp.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType_REGEXP CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType = "REGEXP"
+	// Join.
+	CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType_JOIN CompositionRevisionV1Beta1SpecPatchSetsPatchesTransformsStringType = "JOIN"
+)
+
