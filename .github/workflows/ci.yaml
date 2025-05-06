@@ -21,11 +21,11 @@ jobs:
       run: npm install -g cdk8s-cli
 
     - name: Run `cdk8s synth`
-      working-directory: ./cdk8s
+      working-directory: .
       run: cdk8s synth
 
     - name: Upload generated manifests
       uses: actions/upload-artifact@v4
       with:
         name: cdk8s-manifests
-        path: cdk8s/dist/
+        path: dist/
