@@ -11,6 +11,7 @@ type AppProps struct {
     Replicas      *float64
     Port          *float64
     ContainerPort *float64
+    Name          *string
 }
 
 func NewDeployment(scope constructs.Construct, id *string, props *AppProps) constructs.Construct {
@@ -26,12 +27,20 @@ func NewDeployment(scope constructs.Construct, id *string, props *AppProps) cons
         containerPort = jsii.Number(8080)
     }
 
+    appName := props.Name
+    if appName == nil {
+        appName = jsii.String("app")
+    }
+
     label := map[string]*string{
-        "app": constructs.Node_Of(construct).Id(),
+        "app": appName,
     }
 
     k8s.NewKubeDeployment(construct, jsii.String("deployment"), &k8s.KubeDeploymentProps{
-        Metadata: &k8s.ObjectMeta{Labels: &label},
+        Metadata: &k8s.ObjectMeta{
+            Name:   appName,
+            Labels: &label,
+        },
         Spec: &k8s.DeploymentSpec{
             Replicas: replicas,
             Selector: &k8s.LabelSelector{MatchLabels: &label},
@@ -41,7 +50,9 @@ func NewDeployment(scope constructs.Construct, id *string, props *AppProps) cons
                     Containers: &[]*k8s.Container{{
                         Name:  jsii.String("web"),
                         Image: props.Image,
-                        Ports: &[]*k8s.ContainerPort{{ContainerPort: containerPort}},
+                        Ports: &[]*k8s.ContainerPort{{
+                            ContainerPort: containerPort,
+                        }},
                     }},
                 },
             },
@@ -64,12 +75,20 @@ func NewService(scope constructs.Construct, id *string, props *AppProps) constru
         containerPort = jsii.Number(8080)
     }
 
+    appName := props.Name
+    if appName == nil {
+        appName = jsii.String("app")
+    }
+
     label := map[string]*string{
-        "app": constructs.Node_Of(construct).Id(),
+        "app": appName,
     }
 
     k8s.NewKubeService(construct, jsii.String("service"), &k8s.KubeServiceProps{
-        Metadata: &k8s.ObjectMeta{Labels: &label},
+        Metadata: &k8s.ObjectMeta{
+            Name:   jsii.String(*appName + "-service"),
+            Labels: &label,
+        },
         Spec: &k8s.ServiceSpec{
             Type: jsii.String("LoadBalancer"),
             Ports: &[]*k8s.ServicePort{{
