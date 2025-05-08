@@ -8,7 +8,7 @@ import (
 
 type AppProps struct {
     Image         *string
-    Replicas      *float64
+    Replicas      *string
     Port          *float64
     ContainerPort *float64
     Name          *string
