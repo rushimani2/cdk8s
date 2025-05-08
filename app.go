@@ -22,11 +22,6 @@ func NewDeployment(scope constructs.Construct, id *string, props *AppProps) cons
         replicas = jsii.Number(1)
     }
 
-    containerPort := props.ContainerPort
-    if containerPort == nil {
-        containerPort = jsii.Number(8080)
-    }
-
     appName := props.Name
     if appName == nil {
         appName = jsii.String("go-web-app")
@@ -48,10 +43,11 @@ func NewDeployment(scope constructs.Construct, id *string, props *AppProps) cons
                 Metadata: &k8s.ObjectMeta{Labels: &label},
                 Spec: &k8s.PodSpec{
                     Containers: &[]*k8s.Container{{
-                        Name:  jsii.String("web"),
+                        Name:  appName,
                         Image: props.Image,
+                        ImagePullPolicy: jsii.String("{{ .Values.image.pullPolicy }}"),
                         Ports: &[]*k8s.ContainerPort{{
-                            ContainerPort: containerPort,
+                            ContainerPort: jsii.Number(8080),
                         }},
                     }},
                 },
@@ -70,11 +66,6 @@ func NewService(scope constructs.Construct, id *string, props *AppProps) constru
         port = jsii.Number(80)
     }
 
-    containerPort := props.ContainerPort
-    if containerPort == nil {
-        containerPort = jsii.Number(8080)
-    }
-
     appName := props.Name
     if appName == nil {
         appName = jsii.String("go-web-app")
@@ -86,14 +77,15 @@ func NewService(scope constructs.Construct, id *string, props *AppProps) constru
 
     k8s.NewKubeService(construct, jsii.String("service"), &k8s.KubeServiceProps{
         Metadata: &k8s.ObjectMeta{
-            Name:   jsii.String(*appName + "-service"),
+            Name:   appName,
             Labels: &label,
         },
         Spec: &k8s.ServiceSpec{
             Type: jsii.String("LoadBalancer"),
             Ports: &[]*k8s.ServicePort{{
                 Port:       port,
-                TargetPort: k8s.IntOrString_FromNumber(containerPort),
+                TargetPort: k8s.IntOrString_FromNumber(jsii.Number(8080)),
+                Protocol:   jsii.String("TCP"),
             }},
             Selector: &label,
         },
