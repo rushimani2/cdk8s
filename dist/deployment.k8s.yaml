@@ -15,7 +15,7 @@ spec:
         app: go-web-app
     spec:
       containers:
-        - image: rushi/go-web-demo
+        - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           name: web
           ports:
             - containerPort: 8080
