@@ -29,7 +29,7 @@ func NewDeployment(scope constructs.Construct, id *string, props *AppProps) cons
 
     appName := props.Name
     if appName == nil {
-        appName = jsii.String("app")
+        appName = jsii.String("go-web-app")
     }
 
     label := map[string]*string{
@@ -77,7 +77,7 @@ func NewService(scope constructs.Construct, id *string, props *AppProps) constru
 
     appName := props.Name
     if appName == nil {
-        appName = jsii.String("app")
+        appName = jsii.String("go-web-app")
     }
 
     label := map[string]*string{
