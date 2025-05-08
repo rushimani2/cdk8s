@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: app
-  name: app
+    app: go-web-app
+  name: go-web-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: app
+      app: go-web-app
   template:
     metadata:
       labels:
-        app: app
+        app: go-web-app
     spec:
       containers:
         - image: rushi/go-web-demo
