@@ -1,5 +1,8 @@
 name: CDK8s Synth
 
+permissions:
+  contents: write
+  
 on:
   push:
   pull_request:
