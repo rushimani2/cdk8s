@@ -19,7 +19,7 @@ func NewDeploymentChart(scope constructs.Construct, id string) cdk8s.Chart {
     chart := cdk8s.NewChart(scope, jsii.String(id), nil)
     NewDeployment(chart, jsii.String("go-web-app"), &AppProps{
         Image:         jsii.String("{{ .Values.image.repository }}:{{ .Values.image.tag }}"),
-        Replicas:      jsii.String("{{ .Values.replicaCount }}"),
+        Replicas:      jsii.Number(3),
         ContainerPort: jsii.Number(8080),
     })
     return chart
