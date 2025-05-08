@@ -19,8 +19,9 @@ func NewDeploymentChart(scope constructs.Construct, id string) cdk8s.Chart {
     chart := cdk8s.NewChart(scope, jsii.String(id), nil)
     NewDeployment(chart, jsii.String("go-web-app"), &AppProps{
         Image:         jsii.String("{{ .Values.image.repository }}:{{ .Values.image.tag }}"),
-        Replicas:      jsii.Number(3),
+        Replicas:      jsii.NumberFromString("{{ .Values.replicaCount }}"),
         ContainerPort: jsii.Number(8080),
+        Name:          jsii.String("go-web-app"),
     })
     return chart
 }
@@ -28,8 +29,9 @@ func NewDeploymentChart(scope constructs.Construct, id string) cdk8s.Chart {
 func NewServiceChart(scope constructs.Construct, id string) cdk8s.Chart {
     chart := cdk8s.NewChart(scope, jsii.String(id), nil)
     NewService(chart, jsii.String("go-web-app"), &AppProps{
-        Port:          jsii.Number(8080),
+        Port:          jsii.Number(80),
         ContainerPort: jsii.Number(8080),
+        Name:          jsii.String("go-web-app"),
     })
     return chart
 }
