@@ -19,7 +19,7 @@ func NewDeployment(scope constructs.Construct, id *string, props *AppProps) cons
 
     replicas := props.Replicas
     if replicas == nil {
-        replicas = jsii.Number(1)
+        replicas = jsii.String("1")
     }
 
     appName := props.Name
