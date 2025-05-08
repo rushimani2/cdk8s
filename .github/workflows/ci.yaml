@@ -2,10 +2,14 @@ name: CDK8s Synth
 
 permissions:
   contents: write
-  
+
 on:
   push:
+    branches:
+      - '**'
   pull_request:
+    branches:
+      - '**'
 
 jobs:
   synth:
@@ -20,8 +24,16 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Install CDK8s CLI
-      run: npm install -g cdk8s-cli
+    - name: Install CDK8s CLI and dependencies
+      run: |
+        npm install -g cdk8s-cli
+        npm ci || npm install
+
+    - name: Compile TypeScript
+      run: |
+        if [ -f tsconfig.json ]; then
+          npx tsc
+        fi
 
     - name: Ensure dist/ directory exists
       run: mkdir -p dist
@@ -42,3 +54,5 @@ jobs:
         git add dist/
         git diff --cached --quiet dist/ || git commit -m "chore: update synthesized Kubernetes manifests"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
