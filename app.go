@@ -71,7 +71,7 @@ func NewService(scope constructs.Construct, id *string, props *AppProps) constru
     }
 
     containerPort := props.ContainerPort
-    if containerPort == nil {
+    if containerPort == nil { 
         containerPort = jsii.Number(8080)
     }
 
